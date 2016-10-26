@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+    <head>
+		<meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<link rel="icon" href="/static/image/logo.jpg">
+        <title>用户登录</title>
+        <link href="/static/css/login.css" rel="stylesheet">
+    </head>
+	<body background="/static/image/137.jpg">
+        {%   block page-content%}
+		<div>
+    		<form action='/acc_login/' method='POST' class='biaodan' onsubmit='return checkinput();'>
+            	<li class='shuru'>用户名:&nbsp&nbsp&nbsp&nbsp </li>
+        		<input type='text' name='username' class='kuang' autocomplete='off' />
+                <br>
+                <li class='shuru'>密&nbsp&nbsp&nbsp&nbsp码:&nbsp&nbsp&nbsp&nbsp </li>
+        		<input type='password' name='password' class='kuang' autocomplete='off'/>
+				<input type="text" id="inputRandom" class='yanzheng'>
+				<input type="button" value="获取验证码" id='autoRandom' onclick=createCode() class='tupian'><br>
+        		<input type='submit' class='sousuo' value='登录' />
+                <span style='color:red'>{{login_err}}</span>
+                <a href='http://localhost:8000/' class='sousuo2' >游客</a>
+         		
+    		</form>
+		</div>
+		{%endblock%}
+		<script>
+			function checkinput () {
+				if (document.getElementById("inputRandom").value!=document.getElementById("autoRandom").value) {
+					alert ("验证码错误！");
+					return false;
+				}
+				return true;
+			} 
+			function createCode(){  
+				var seed = new Array(  
+						'abcdefghijklmnopqrstuvwxyz',  
+						'ABCDEFGHIJKLMNOPQRSTUVWXYZ',  
+						'0123456789'  
+				); 
+				var idx,i;
+				var result = ''; 
+				for (i=0; i<4; i++){  
+					idx = Math.floor(Math.random()*3); 
+					result += seed[idx].substr(Math.floor(Math.random()*(seed[idx].length)), 1);  
+				}  
+				document.getElementById('autoRandom').value=result; 
+			}   
+		</script>  
+	</body>
+</html>

@@ -1,0 +1,65 @@
+.biaodan{
+width:500px;
+height:300px;
+position:absolute;
+left:550px;
+top:100px;
+}.shuru{
+font-family:Times New Roman;
+font-size:20px;
+color:#fff;
+display:inline;
+}.sousuo{
+float: left;
+width:60px;
+height: 25px;
+background: #000;
+border: none;
+line-height: 1;
+color: #fff;
+font-family: "Microsoft YaHei";
+font-size: 20px;
+cursor: pointer;
+position:relative;
+left:0px;
+top:60px;
+}.sousuo2{
+float: left;
+width:60px;
+height: 25px;
+background: #000;
+border: none;
+line-height: 1;
+color: #fff;
+font-family: "Microsoft YaHei";
+font-size: 20px;
+cursor: pointer;
+position:relative;
+left:110px;
+top:60px;
+text-align:center
+}.kuang{
+background-color: #fff;
+color: #000;
+line-height: 25px\9;
+padding: 2px 2px 2px 5px;
+width: 130px;
+font-size:15px;
+}a{TEXT-DECORATION:none}
+.yanzheng{
+position:relative;
+top:40px;
+width:100px;
+height:25px;
+left:-240px;
+}.tupian{
+position:relative;
+top:40px;
+left:-220px;
+width:100px;
+height:30px;
+border: none;
+line-height: 1;
+font-family: "Microsoft YaHei";
+cursor: pointer;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>Wimpy Player - Example 4</title>
+
+
+<!-- Wimpy Engine -->
+<!-- NOTE: This should be located in between the opening <head> and closing </head> tags. -->
+<script src="wimpy.js"></script>
+
+<!-- Create Wimpy Player with Target.
+Note how we can create a player here 
+(in the HEAD), yet still render the 
+player in the body. This is because
+we are using the "target" option. -->
+<script>
+var myPlayer = new wimpyPlayer({
+	target 		: "myPlayerTarget", // This is identical tot eh "id" in the DIV below.
+	media		: "song1.mp3",
+	skin 		: "wimpy.skins/041.tsv",
+	startUpText : "Hello"
+});
+</script>
+
+
+
+</head>
+<body>
+
+
+
+<p>IMPORTANT: The player will only work properly on a live web server!</p>
+
+<!-- Wimpy Player Target -->
+<div id="myPlayerTarget"></div>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<playlist>
+    <item>
+        <file>/static/music/ED1.mp3</file>
+        <title>OP1</title>
+        <artist>BLEACH</artist>
+        <image>/static/image/ED1.jpg</image>
+    </item>
+    <item>
+        <file>/static/music/ED10.mp3</file>
+        <title>OP2</title>
+        <artist>BLEACH</artist>
+        <image>/static/image/ED10.jpg</image>
+    </item>
+	<item>
+        <file>/static/music/OP9.mp3</file>
+        <title>OP3</title>
+        <artist>BLEACH</artist>
+        <image>/static/image/OP9.jpg</image>
+    </item>
+ </playlist>  

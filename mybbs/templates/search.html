@@ -1,0 +1,195 @@
+﻿{%load comments%}
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" href="/static/image/logo.jpg">
+		<title>搜索结果</title>
+		<link href="/static/css/styles.css" rel="stylesheet">
+		<link href="/static/css/default.css" rel="stylesheet">
+		<link href="/static/css/normalize.css" rel="stylesheet">
+		<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/static/css/navbar-fixed-top.css" rel="stylesheet">
+		<style type="text/css">
+			body {background-image:url(/static/image/03.jpg); background-repeat:no-repeat; background-attachment:fixed} 
+		</style>
+		<script src='/static/wimpy/wimpy.js'></script>
+    </head>
+    <body>
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#" style="font-family:KaiTi;font-size:30px;color:#d12">瀞灵</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse" >
+					<ul class="nav navbar-nav" style="color:#000">
+						{% for category in bbs_categories %}
+							{% ifequal category.id  cate_id %}
+								<li class="active"><a href="/category/{{category.id}}">{{category.name}}</a></li>
+							{%else%}
+								<li ><a href="/category/{{category.id}}">{{category.name}}</a></li>
+							{% endifequal %}
+						{% endfor %}
+					</ul>
+					<div class="key-sera">
+						<form action="/search/" method="post" name="searchFrm2" id="searchFrm2" onsubmit="return checkinput();">
+							<input type="text" class="search-txt-s" name="words" placeholder='搜人/搜贴' id="txtSearch2" autocomplete="off">
+							<button type='submit' class='sousuo' name="searchBtn_2" id="searchBtn_3">搜索</button>								
+							<input type="hidden" value="1" id="page" name="page">
+						</form>			
+					</div>
+					{%if bbs_user.user.is_authenticated%}
+						<img src='{{bbs_user.photo.url}}' class='txup' alt="头像">
+					{%endif%}
+					<ul class="nav navbar-nav navbar-right" style="position:absolute;left:1100px;top:1px">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								{%if bbs_user.user.is_authenticated%}
+									{{bbs_user.user.username}}
+								{%else%}
+									游客
+								{%endif%}
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								{%if bbs_user.user.is_authenticated%}
+									<li><a href="/edit">账号管理</a></li>
+									<li><a href="/myidea">我的帖子</a></li>
+									<li><a href="/favorite">我的收藏</a></li>
+									<li><a href="/logout">注销</a></li>
+								{%else%}
+									<li><a href="/login">登录</a></li>
+									<li><a href="/register">注册</a></li>
+								{%endif%}
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="container" >
+			<div class="nav-top-area">
+				<div class="child-nav">
+					<a href="#" hidefocus="false" class="hotbtn active icons" style="color:#69F;font-size:20px">最热</a>			
+					<a href="#" hidefocus="false" class="newbtn" style="color:#69F;font-size:20px">最新</a>
+					<a href="#" hidefocus="false" class="personbtn" style="color:#69F;font-size:20px">最多评论</a>        
+				</div>	
+				<div class="sort-nav"></div>
+				{%if bbs_user.user.is_authenticated%}
+					<a href="http://localhost:8000/bbs_pub/" class="publish-btn" style="color:#FFF">
+						<span class="ico n1"></span><span class="n2">发布</span>		
+					</a>
+				{%else%}
+					<a href="#" class="publish-btn" style="color:#FFF">
+						<span class="ico n1"></span><span class="n2">发布</span>		
+					</a>
+				{%endif%}
+			</div>
+			{%block page-content%}
+				<div>
+					{%for bbs in bbs_list reversed%}
+						<a name='{{bbs.id}}' id='{{bbs.id}}'></a>
+						<input type='hidden' name='bbs_id' value='{{bbs.id}}' />
+						<div class='shadow-box-noshadow mod-list-box mod-headlines'>
+							<input type='hidden' name='bbs_id' value='{{bbs.id}}' />
+							<img src='{{bbs.author.photo.url}}' class='txzhong' alt="头像">
+							<b style="font-size:15px;font-weight:500;position:relative;left:50px">{{bbs.author}}</b>
+							<span class='glyphicon glyphicon-comment' style="position:absolute;left:580px;top:15px"></span>
+							<b style="position:absolute;left:610px;top:13px">{{bbs.com_count}}</b>
+							<span class='glyphicon glyphicon-signal' style="position:absolute;left:700px;top:15px"></span>
+							<b style="position:absolute;left:730px;top:13px">{{bbs.view_count}}</b>
+							<hr align=center width="100%" size=3></hr>
+							<b class='zhengtitle'><a href='/todetail/{{bbs.id}}/'>{{bbs.title}}</a></b><br>
+							<div class='zhengsum'><b style="font-weight:500;font-size:15px;">{{bbs.summary}}</b></div><br>
+							<hr align=center width="100%" size=3></hr>
+							<button disabled="disabled" class='zanpic'><span class='glyphicon glyphicon-thumbs-up'></span></button>
+							<b class='zancount'>{{bbs.zan_count}}</b>
+							<button disabled="disabled" class='caipic'><span class='glyphicon glyphicon-thumbs-down'></span></button>
+							<b class='caicount'>{{bbs.cai_count}}</b>
+							<button disabled="disabled" class='favorpic'><span class='glyphicon glyphicon-bookmark'></span></button>
+							<b class='favorcount'>收藏</b>
+							<b class='zhengdate'>{{bbs.created_at}}</b>
+						</div>
+						<br>
+					{%endfor%}
+				</div>
+			{%endblock%}			
+			<div data-wimpyplayer data-skin="/static/wimpy/041.tsv" class='wim' data-media="/static/wimpy/playlist.xml"></div>
+			<div class='chongwu'>
+				<div style="font-size:20px;font-weight:700">我的宠物</div>
+				<object type="application/x-shockwave-flash" style="outline:none;" data="/static/image/hamster.swf?" width="350" height="265"></object>
+			</div>
+			<div>
+				<div class='powerby'>
+					<h3>Powered By</h3><br>
+					<a href="https://www.python.org/" target="_blank"><img src="/static/image/python.png"></a><br>
+					<a href="http://www.sqlite.org/" target="_blank"><img src="/static/image/sql.png"></a><br>
+					<a href="http://www.bootcss.com/" target="_blank"><img src="/static/image/boot.png"></a><br>
+					<a href="https://www.djangoproject.com/" target="_blank"><img src="/static/image/djo.jpg"></a>
+				</div>
+			</div>
+			<div id="butong_net_left" class='roolpic'>
+				<table cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<td id="butong_net_left1" valign="top" align="center">
+							<table cellpadding="2" cellspacing="0" border="0">
+								<tr align="center">
+									{%for a in number%}
+										<td><img src="/static/rool/{{a}}.jpg"></td>
+									{%endfor%}
+								</tr>
+							</table>
+						</td>
+						<td id="butong_net_left2" valign="top"></td>
+					</tr>
+				</table>
+			</div>			
+			</div>        
+		</div>
+		<a id="returnTop" href="javascript:;" style="bottom: 100px;">回到顶部</a>
+		<span style="display: none;">
+			<script type="text/javascript">
+				var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+				document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9f07c4401c1f0111eae007510d7b139c' type='text/javascript'%3E%3C/script%3E"));
+			</script>
+			<script language="javascript" type="text/javascript" src="http://js.users.51.la/5424198.js"></script>
+			<noscript>
+				<a href="http://www.51.la/?5424198" target="_blank">
+					<img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/5424198.asp" style="border: none" />
+				</a>
+			</noscript>
+		</span>		
+		<script type="text/javascript" id="bdshare_js" data="type=slide&amp;img=2&amp;uid=617676" ></script>
+		<script type="text/javascript" id="bdshell_js"></script>
+		<script type="text/javascript">document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?t=" + new Date().getHours();</script>
+		<script src="/static/js/jquery.min.js"></script>
+		<script src="/static/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/static/js/main.js"></script>
+		<script src="/static/js/stopExecutionOnTimeout.js?t=1"></script>
+		<script src="/static/js/top.js"></script>
+		<script>
+			var speed=20
+			butong_net_left2.innerHTML=butong_net_left1.innerHTML
+			function Marquee3(){
+			if(butong_net_left2.offsetWidth-butong_net_left.scrollLeft<=0)
+			butong_net_left.scrollLeft-=butong_net_left1.offsetWidth
+			else{
+			butong_net_left.scrollLeft++
+			}
+			}
+			var MyMar3=setInterval(Marquee3,speed)
+			butong_net_left.onmouseover=function() {clearInterval(MyMar3)}
+			butong_net_left.onmouseout=function() {MyMar3=setInterval(Marquee3,speed)}
+		</script>
+	</body>
+</html>

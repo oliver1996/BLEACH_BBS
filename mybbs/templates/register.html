@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<link rel="icon" href="/static/image/logo.jpg">
+	<title>新用户注册</title>
+</head>
+<link href="/static/css/register.css" rel="stylesheet">
+	<body background="/static/image/4.jpg">
+		<h3 style="color:red">{{error}}</h3>
+    	<div class='lol'>
+        	<form method="post" action='/regio/' onsubmit="return checkinput();">
+                <input type='text' class='yong' name='username' id="t" placeholder="用户名" required="required" maxlength='15' /><br>
+				<input type='email' class='yong2' name='email' id='t3' placeholder="邮箱" required="required"/><br>
+                <input type='password' class='mi' name='password' id="t1" placeholder="密码" required="required" maxlength='15' /><br>
+				<input type='password' class='mi2' name='password2' id="t2" placeholder="确认密码" required="required" maxlength='15'/><br>
+				<input type="text" id="inputRandom" class='yanzheng'>
+				<input type="button" value="获取验证码" id='autoRandom' onclick=createCode() class='tupian'><br>
+                <button type='submit' class='que'>确认</button>
+                <b class='que2'><a href="http://localhost:8000/" style="position:absolute;left:10px;top:2px">放弃</a></b>
+            </form>
+		</div>
+		<script>
+			function checkinput () {
+				if (document.getElementById("t").value[0]==" ") {
+					alert ("用户名不能以空格开头！");
+					return false;
+				}
+				var  reEmail=/^\w+@\w+\.\w+$/;
+				if (!reEmail.test(document.getElementById("t3").value)){
+					alert("请输入有效的邮箱地址");
+					return false;
+				}
+				if (document.getElementById("t1").value!=document.getElementById("t2").value) {
+					alert ("两次输入的密码不同！");
+					return false;
+				}
+				if (document.getElementById("inputRandom").value!=document.getElementById("autoRandom").value) {
+					alert ("验证码错误！");
+					return false;
+				}
+				return true;
+			} 
+			function createCode(){  
+				var seed = new Array(  
+						'abcdefghijklmnopqrstuvwxyz',  
+						'ABCDEFGHIJKLMNOPQRSTUVWXYZ',  
+						'0123456789'  
+				); 
+				var idx,i;
+				var result = ''; 
+				for (i=0; i<4; i++){  
+					idx = Math.floor(Math.random()*3); 
+					result += seed[idx].substr(Math.floor(Math.random()*(seed[idx].length)), 1);  
+				}  
+				document.getElementById('autoRandom').value=result; 
+			}   
+		</script>  
+	</body>
+</html>

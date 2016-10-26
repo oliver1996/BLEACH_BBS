@@ -1,0 +1,96 @@
+.lol{
+position:absolute;
+left:450px;
+top:150px;
+opacity:0.5;
+background-color:#CCC;
+width:400px;
+height:260px;
+}.yong{
+position:relative;
+left:100px;
+top:20px;
+width:200px;
+height:25px
+}.yong2{
+position:absolute;
+left:100px;
+top:70px;
+width:200px;
+height:25px
+}.mi{
+position:absolute;
+left:100px;
+top:120px;
+width:200px;
+height:25px
+}.mi2{
+position:absolute;
+left:100px;
+top:170px;
+width:200px;
+height:25px
+}.yanzheng{
+position:absolute;
+left:100px;
+top:220px;
+width:100px;
+height:25px
+}.tupian{
+position:absolute;
+left:205px;
+top:220px;
+width:100px;
+height:30px;
+float: left;
+border: none;
+line-height: 1;
+font-family: "Microsoft YaHei";
+cursor: pointer;
+background-color:#fff;
+}.que{
+position:absolute;
+left:100px;
+top:330px;
+float: left;
+width:60px;
+height: 25px;
+background: #000;
+border: none;
+line-height: 1;
+color: #fff;
+font-family: "Microsoft YaHei";
+font-size: 20px;
+cursor: pointer;
+}.que2{
+position:absolute;
+left:240px;
+top:330px;
+float: left;
+width:60px;
+height: 25px;
+background: #000;
+border: none;
+line-height: 1;
+color: #fff;
+font-family: "Microsoft YaHei";
+font-size: 20px;
+cursor: pointer;
+font-weight:300
+}a:link { 
+color:#fff; 
+text-decoration:none; 
+} 
+a:visited { 
+color:#fff; 
+text-decoration:none; 
+} 
+a:hover { 
+color:#fff; 
+text-decoration:none; 
+} 
+a:active { 
+color:#fff; 
+text-decoration:none; 
+} 
+
